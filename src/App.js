@@ -1,27 +1,26 @@
 // import { useState } from "react";
-import useCounter from "./useCouter";
-
-const App = (props) => {
-  const counter = useCounter();
-  const counterButtom = useCounter();
+import useField from "./useField";
+const App = () => {
+  const name = useField("text");
+  const born = useField("date");
+  const height = useField("number");
 
   return (
-    <>
+    <div>
+      <form>
+        name:
+        <input type={name.type} value={name.value} onChange={name.onChange} />
+        <br />
+        birthdate:
+        <input {...born} />
+        <br />
+        height:
+        <input {...height} />
+      </form>
       <div>
-        <h1>top counter</h1>
-        <div>{counter.value}</div>
-        <button onClick={counter.increase}>plus</button>
-        <button onClick={counter.decrease}>minus</button>
-        <button onClick={counter.zero}>zero</button>
+        {name.value} {born.value} {height.value}
       </div>
-      <div>
-        <h1>Buttom counter</h1>
-        <div>{counterButtom.value}</div>
-        <button onClick={counterButtom.increase}>plus</button>
-        <button onClick={counterButtom.decrease}>minus</button>
-        <button onClick={counterButtom.zero}>zero</button>
-      </div>
-    </>
+    </div>
   );
 };
 export default App;
